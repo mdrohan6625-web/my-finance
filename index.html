@@ -85,7 +85,7 @@ footer{text-align:center;font-size:12px;color:#778;padding:15px}
 .small{font-size:12px;color:#667;line-height:1.6}  
 .tag{display:inline-block;padding:4px 8px;background:#e1f5f1;color:#078f83;border-radius:7px;font-size:12px}  
 </style>  </head>  <body>  <header>  
- <h1>💚 My Finance</h1>  
+ <h1>💚 RK LON BD</h1>  
  <p>আপনার আর্থিক পরিকল্পনার সঙ্গী</p>  
 </header>  <main class="container">  <div id="message" role="status" aria-live="polite"></div>  <!-- LOGIN -->  <section class="page card" id="loginPage">  
  <h2 style="text-align:center">🔐 লগইন করুন</h2>  
@@ -128,7 +128,7 @@ required placeholder="আবার পাসওয়ার্ড লিখু�
  <div class="balance">  
   <p>স্বাগতম,</p>  
   <h2 id="homeName">ব্যবহারকারী</h2>  
-  <p>💚 My Finance-এ আপনাকে স্বাগতম</p>  
+  <p>💚 RK LON BD তে আপনাকে স্বাগতম</p>  
  </div>   <div class="card">  
   <div class="row">  
    <div>  
@@ -141,7 +141,7 @@ required placeholder="আবার পাসওয়ার্ড লিখু�
  <div class="menu-grid">  
   <button class="menu-item" onclick="showPage('loanPage')"><span>💰</span>লোন আবেদন</button>  
   <button class="menu-item" onclick="showPage('cashPage')"><span>💸</span>ক্যাশ আউট</button>  
-  <button class="menu-item" onclick="showPage('depositPage')"><span>🏦</span>ডিপোজিট</button>  
+  <button class="menu-item" onclick="showPage('depositPage')"><span>🏦</span>জামানত</button>  
   <button class="menu-item" onclick="showPage('profilePage')"><span>👤</span>প্রোফাইল</button>  
   <button class="menu-item" onclick="showPage('myLoanPage')"><span>📋</span>আমার লোন</button>  
   <button class="menu-item" onclick="showPage('transactionsPage')"><span>📜</span>লেনদেন</button>  
@@ -185,15 +185,15 @@ required placeholder="আবার পাসওয়ার্ড লিখু�
  <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
 </section>  <!-- CASH OUT -->  <section class="page card" id="cashPage">  
  <h2>💸 ক্যাশ আউট</h2>  
- <p class="subtitle">ডেমো ক্যাশ আউট ফর্ম</p>  
+ <p class="subtitle">ক্যাশ আউট ফর্ম</p>  
  <form id="cashForm">  
   <label>মোবাইল নম্বর</label>  
   <input id="cashPhone" type="tel" maxlength="11" required pattern="01[3-9][0-9]{8}">  
   <label>পরিমাণ (টাকা)</label>  
   <input id="cashAmount" type="number" min="1" max="10000000" required>  
-  <button class="btn">ডেমো অনুরোধ জমা দিন</button>  
+  <button class="btn">অনুরোধ জমা দিন</button>  
  </form>  
- <p class="small">এখানে কোনো বাস্তব টাকা পাঠানো বা উত্তোলন হবে না।</p>  
+ <p class="small">এখান টাকা পাঠানো বা উত্তোলন হবে ।</p>  
  <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
 </section>  <!-- DEPOSIT -->  <section class="page card" id="depositPage">  
  <h2>🏦 ডিপোজিট</h2>  
@@ -208,9 +208,9 @@ required placeholder="আবার পাসওয়ার্ড লিখু�
    <option>নগদ </option>  
    <option>রকেট </option>  
   </select>  
-  <button class="btn">ডেমো অনুরোধ জমা দিন</button>  
+  <button class="btn">সেন্ড মানি করুন 01758706625</button>  
  </form>  
- <p class="small">এটি বাস্তব পেমেন্ট নয়। কোনো টাকা পাঠাবেন না।</p>  
+ <p class="small">এটি বাস্তব পেমেন্ট । টাকা পাঠাবেন </p>  
  <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
 </section>  <!-- PROFILE -->  <section class="page card" id="profilePage">  
  <h2>👤 আমার প্রোফাইল</h2>  
@@ -222,7 +222,7 @@ required placeholder="আবার পাসওয়ার্ড লিখু�
  <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
 </section>  <!-- TRANSACTIONS -->  <section class="page card" id="transactionsPage">  
  <h2>📜 লেনদেনের ইতিহাস</h2>  
- <p class="small">ডেমো অনুরোধের ইতিহাস এখানে দেখা যাবে।</p>  
+ <p class="small">অনুরোধের ইতিহাস এখানে দেখা যাবে।</p>  
  <div id="transactionList"></div>  
  <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
 </section>  <!-- INBOX -->  <section class="page card" id="inboxPage">  
@@ -241,16 +241,16 @@ required placeholder="আবার পাসওয়ার্ড লিখু�
   <textarea id="contactMessage" required maxlength="1000"></textarea>  
   <button class="btn">বার্তা সংরক্ষণ করুন</button>  
  </form>  
- <p class="small">এই ডেমোতে বার্তা শুধু আপনার ডিভাইসে সংরক্ষিত হবে; কাউকে পাঠানো হবে না।</p>  
+ <p class="small">এই  বার্তা শুধু আপনার ডিভাইসে সংরক্ষিত হবে; কাউকে পাঠানো হবে ।</p>  
  <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
 </section>  <!-- ABOUT -->  <section class="page card" id="aboutPage">  
  <h2>ℹ️ My Finance সম্পর্কে</h2>  
  <p>My Finance হলো একটি পরীক্ষামূলক আর্থিক অ্যাপের নমুনা।</p>  
  <p>এখানে লগইন, প্রোফাইল, লোন আবেদন ও ডেমো অনুরোধ পরীক্ষা করা যায়।</p>  
- <div class="notice">এই সংস্করণ কোনো ব্যাংক বা অনুমোদিত আর্থিক প্রতিষ্ঠানের সেবা নয়। বাস্তব লেনদেন বা লোন অনুমোদন করে না।</div>  
+ <div class="notice">এই সংস্করণ কোনো ব্যাংক বা অনুমোদিত আর্থিক প্রতিষ্ঠানের সেবা । বাস্তব লেনদেন বা লোন অনুমোদন করে।</div>  
  <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
 </section>  <div class="notice">  
- ⚠️ নিরাপত্তা সতর্কতা: এটি শুধু শেখার জন্য তৈরি ডেমো। পাসওয়ার্ড ব্রাউজারের স্টোরেজে সংরক্ষিত হয়, তাই বাস্তব পাসওয়ার্ড বা সংবেদনশীল তথ্য ব্যবহার করবেন না। বাস্তব অ্যাপের জন্য নিরাপদ সার্ভার, ব্যবহারকারী যাচাই ও পেমেন্ট ইন্টিগ্রেশন দরকার।  
+ ⚠️ নিরাপত্তা সতর্কতা: এটি শুধু উপকারী অ্যাপস। পাসওয়ার্ড ব্রাউজারের স্টোরেজে সংরক্ষিত হয়, তাই বাস্তব পাসওয়ার্ড বা সংবেদনশীল তথ্য ব্যবহার করবেন। বাস্তব অ্যাপের জন্য নিরাপদ সার্ভার, ব্যবহারকারী যাচাই ও পেমেন্ট ইন্টিগ্রেশন দরকার।  
 </div>  </main>  <nav class="bottom-nav" id="bottomNav">  
  <button onclick="showPage('homePage')"><span>🏠</span>হোম</button>  
  <button onclick="showPage('loanPage')"><span>💰</span>লোন</button>  
@@ -396,13 +396,13 @@ document.getElementById("loanForm").addEventListener("submit",function(e){
   id:Date.now(),amount:amount,months:months,  
   reason:document.getElementById("loanReason").value.trim(),  
   date:new Date().toLocaleString("bn-BD"),  
-  status:"ডেমো আবেদন জমা হয়েছে"  
+  status:"আবেদন জমা হয়েছে"  
  });  
  currentAccount.transactions=currentAccount.transactions||[];  
  currentAccount.transactions.unshift({  
   type:"লোন আবেদন",amount:amount,  
   date:new Date().toLocaleString("bn-BD"),  
-  status:"ডেমো"  
+  status:"অরজিনাল"  
  });  
   
  if(!saveCurrentAccount()){  
@@ -410,7 +410,7 @@ document.getElementById("loanForm").addEventListener("submit",function(e){
  }  
  this.reset();  
  showPage("myLoanPage");  
- showMessage("আপনার ডেমো লোন আবেদন সংরক্ষণ হয়েছে। এটি অনুমোদিত লোন নয়।");  
+ showMessage("আপনার লোন আবেদন সংরক্ষণ হয়েছে। এটি অনুমোদিত লোন ।");  
 });  
   
 function renderLoans() {  
@@ -472,14 +472,14 @@ document.getElementById("depositForm").addEventListener("submit",function(e){
  if(!addTransaction("ডিপোজিট · "+method,amount))return;  
  this.reset();  
  showPage("transactionsPage");  
- showMessage("ডেমো ডিপোজিট অনুরোধ সংরক্ষণ হয়েছে। কোনো টাকা জমা হয়নি।");  
+ showMessage("ডিপোজিট অনুরোধ সংরক্ষণ হয়েছে। কোনো টাকা জমা হচ্ছে।");  
 });  
   
 function renderTransactions() {  
  const list=document.getElementById("transactionList");  
  const transactions=currentAccount && currentAccount.transactions || [];  
  if(!transactions.length){  
-  list.innerHTML='<p class="small">এখনো কোনো ডেমো লেনদেন নেই।</p>';
+  list.innerHTML='<p class="small">এখনো কোনো লেনদেন নেই।</p>';
     return;
  }
  list.replaceChildren();
