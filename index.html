@@ -1,524 +1,937 @@
-<!DOCTYPE html>  <html lang="bn">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>My Finance</title>  <style>  
-*{box-sizing:border-box}  
-body{  
- margin:0;font-family:Arial,sans-serif;  
- background:#f1f6f5;color:#263238;  
- padding-bottom:75px  
-}  
-header{  
- background:#078f83;color:white;padding:20px 16px;  
- border-radius:0 0 22px 22px;  
-}  
-header h1{margin:0 0 6px;font-size:25px}  
-header p{margin:0;font-size:14px}  
-.container{max-width:500px;margin:auto;padding:15px}  
-.card{  
- background:white;padding:18px;margin-bottom:15px;  
- border-radius:17px;box-shadow:0 3px 12px #0000000c  
-}  
-h2{color:#078f83;margin-top:0;font-size:21px}  
-h3{margin:8px 0}  
-.subtitle{text-align:center;color:#667;font-size:14px;line-height:1.6}  
-label{display:block;margin:14px 0 6px;font-weight:bold;font-size:14px}  
-input,select,textarea{  
- width:100%;padding:12px;border:1px solid #ccd8d7;  
- border-radius:9px;font-size:16px;background:white  
-}  
-textarea{min-height:85px;resize:vertical}  
-button{cursor:pointer}  
-.btn{  
- width:100%;padding:13px;border:0;border-radius:10px;  
- background:#078f83;color:white;font-size:16px;  
- font-weight:bold;margin-top:14px  
-}  
-.btn2{  
- border:0;background:#e1f5f1;color:#06786e;  
- padding:10px 12px;border-radius:9px;font-weight:bold  
-}  
-.link{  
- background:none;border:0;color:#078f83;  
- font-weight:bold;font-size:15px;padding:10px  
-}  
-.page{display:none}  
-#message{  
- display:none;padding:12px;border-radius:9px;  
- margin-bottom:15px;overflow-wrap:anywhere  
-}  
-.menu-grid{  
- display:grid;grid-template-columns:repeat(3,1fr);gap:10px  
-}  
-.menu-item{  
- background:white;border-radius:14px;padding:15px 5px;  
- text-align:center;border:1px solid #e2eeeb;  
- box-shadow:0 2px 7px #00000008;min-height:95px;  
- color:#263238;font-size:13px;font-weight:bold  
-}  
-.menu-item span{display:block;font-size:26px;margin-bottom:9px}  
-.balance{  
- background:linear-gradient(135deg,#078f83,#15b5a0);  
- color:white;padding:22px;border-radius:16px;margin-bottom:15px  
-}  
-.balance h2{color:white;margin-bottom:8px}  
-.balance p{margin:0;font-size:14px}  
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px}  
-.list-item{padding:12px 0;border-bottom:1px solid #edf0f0;line-height:1.6}  
-.list-item:last-child{border-bottom:0}  
-.bottom-nav{  
- position:fixed;bottom:0;left:0;right:0;  
- display:none;background:white;border-top:1px solid #ddd;  
- padding:8px 4px;grid-template-columns:repeat(3,1fr);  
- z-index:10  
-}  
-.bottom-nav button{  
- border:0;background:white;color:#667;padding:5px;font-size:12px  
-}  
-.bottom-nav span{display:block;font-size:22px;margin-bottom:3px}  
-.notice{  
- font-size:12px;line-height:1.7;color:#765e19;  
- background:#fff5d8;padding:12px;border-radius:10px;margin-top:15px  
-}  
-footer{text-align:center;font-size:12px;color:#778;padding:15px}  
-.small{font-size:12px;color:#667;line-height:1.6}  
-.tag{display:inline-block;padding:4px 8px;background:#e1f5f1;color:#078f83;border-radius:7px;font-size:12px}  
-</style>  </head>  <body>  <header>  
- <h1>💚 RK LON BD</h1>  
- <p>আপনার আর্থিক পরিকল্পনার সঙ্গী</p>  
-</header>  <main class="container">  <div id="message" role="status" aria-live="polite"></div>  <!-- LOGIN -->  <section class="page card" id="loginPage">  
- <h2 style="text-align:center">🔐 লগইন করুন</h2>  
- <p class="subtitle">আপনার অ্যাকাউন্টে প্রবেশ করুন</p>   <form id="loginForm">  
-  <label>মোবাইল নম্বর</label>  
-  <input id="loginPhone" type="tel" inputmode="numeric"  
-   pattern="01[3-9][0-9]{8}" maxlength="11"  
-   placeholder="01XXXXXXXXX" required>  <label>পাসওয়ার্ড</label>
-<input id="loginPassword" type="password" required  
-placeholder="পাসওয়ার্ড লিখুন">
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RK LON BD</title>
 
-<button class="btn">লগইন</button>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:#f1f6f5;color:#263238;padding-bottom:75px
+}
+header{
+ background:#078f83;color:white;padding:20px 16px;
+ border-radius:0 0 22px 22px
+}
+.header-row{display:flex;justify-content:space-between;align-items:center}
+header h1{margin:0 0 6px;font-size:25px}
+header p{margin:0;font-size:14px}
+.admin-shortcut{
+ border:1px solid #fff;background:white;color:#078f83;
+ width:42px;height:42px;border-radius:12px;font-size:20px;
+ font-weight:bold
+}
+.container{max-width:500px;margin:auto;padding:15px}
+.card{
+ background:white;padding:18px;margin-bottom:15px;
+ border-radius:17px;box-shadow:0 3px 12px #0000000c
+}
+h2{color:#078f83;margin-top:0;font-size:21px}
+h3{margin:8px 0}
+.subtitle{text-align:center;color:#667;font-size:14px;line-height:1.6}
+label{display:block;margin:14px 0 6px;font-weight:bold;font-size:14px}
+input,select,textarea{
+ width:100%;padding:12px;border:1px solid #ccd8d7;
+ border-radius:9px;font-size:16px;background:white
+}
+textarea{min-height:85px;resize:vertical}
+button{cursor:pointer}
+.btn{
+ width:100%;padding:13px;border:0;border-radius:10px;
+ background:#078f83;color:white;font-size:16px;
+ font-weight:bold;margin-top:14px
+}
+.btn2{
+ border:0;background:#e1f5f1;color:#06786e;
+ padding:10px 12px;border-radius:9px;font-weight:bold
+}
+.btn-danger{background:#ffebeb;color:#a32020}
+.btn-approve{background:#078f83;color:white}
+.link{
+ background:none;border:0;color:#078f83;
+ font-weight:bold;font-size:15px;padding:10px
+}
+.page{display:none}
+#message{
+ display:none;padding:12px;border-radius:9px;
+ margin-bottom:15px;overflow-wrap:anywhere
+}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.menu-item{
+ background:white;border-radius:14px;padding:15px 5px;
+ text-align:center;border:1px solid #e2eeeb;
+ box-shadow:0 2px 7px #00000008;min-height:95px;
+ color:#263238;font-size:13px;font-weight:bold
+}
+.menu-item span{display:block;font-size:26px;margin-bottom:9px}
+.balance{
+ background:linear-gradient(135deg,#078f83,#15b5a0);
+ color:white;padding:22px;border-radius:16px;margin-bottom:15px
+}
+.balance h2{color:white;margin-bottom:8px}
+.balance p{margin:0;font-size:14px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.list-item{padding:12px 0;border-bottom:1px solid #edf0f0;line-height:1.6}
+.list-item:last-child{border-bottom:0}
+.bottom-nav{
+ position:fixed;bottom:0;left:0;right:0;display:none;
+ background:white;border-top:1px solid #ddd;padding:8px 4px;
+ grid-template-columns:repeat(3,1fr);z-index:10
+}
+.bottom-nav button{border:0;background:white;color:#667;padding:5px;font-size:12px}
+.bottom-nav span{display:block;font-size:22px;margin-bottom:3px}
+.notice{
+ font-size:12px;line-height:1.7;color:#765e19;
+ background:#fff5d8;padding:12px;border-radius:10px;margin-top:15px
+}
+footer{text-align:center;font-size:12px;color:#778;padding:15px}
+.small{font-size:12px;color:#667;line-height:1.6}
+.tag{display:inline-block;padding:4px 8px;background:#e1f5f1;color:#078f83;border-radius:7px;font-size:12px}
+.calculation{background:#e1f5f1;padding:14px;border-radius:12px;margin-top:15px}
+.calculation p{margin:10px 0}
+.admin-stat{
+ padding:12px;background:#e1f5f1;border-radius:10px;margin:8px 0
+}
+.transaction-box{
+ border:1px solid #ccd8d7;border-radius:12px;
+ padding:14px;margin:14px 0;background:#fbfefd
+}
+.admin-card{
+ border:1px solid #e2eeeb;padding:13px;border-radius:12px;margin:12px 0
+}
+.hidden{display:none!important}
+</style>
+</head>
 
- </form>   <p class="subtitle">নতুন ব্যবহারকারী?</p>  
- <button class="link" style="display:block;margin:auto"  
-  onclick="showPage('registerPage')">➕ অ্যাকাউন্ট তৈরি করুন</button>   <div class="notice">এটি একটি ডেমো অ্যাপ। এখানে বাস্তব টাকা লেনদেন হয় না।</div>  
-</section>  <!-- REGISTER -->  <section class="page card" id="registerPage">  
- <h2 style="text-align:center">📝 নতুন অ্যাকাউন্ট</h2>  
- <p class="subtitle">আপনার তথ্য দিয়ে রেজিস্ট্রেশন করুন</p>   <form id="registerForm">  
-  <label>পুরো নাম</label>  
-  <input id="regName" maxlength="80" required placeholder="আপনার নাম">  <label>মোবাইল নম্বর</label>
-<input id="regPhone" type="tel" inputmode="numeric"  
-pattern="01[3-9][0-9]{8}" maxlength="11"  
-required placeholder="01XXXXXXXXX">
+<body>
 
-<label>পাসওয়ার্ড</label>
-<input id="regPassword" type="password" minlength="8"  
-required placeholder="কমপক্ষে ৮ অক্ষর">
+<header>
+ <div class="header-row">
+  <div>
+   <h1>💚 RK LON BD 💚</h1>
+   <p>💸 আপনার সাফল্যই আমাদের সর্বোচ্চ প্রচেষ্টা 💸</p>
+  </div>
+  <button class="admin-shortcut" onclick="openAdmin()" aria-label="Admin">A</button>
+ </div>
+</header>
 
-<label>পাসওয়ার্ড নিশ্চিত করুন</label>
-<input id="regConfirm" type="password" minlength="8"  
-required placeholder="আবার পাসওয়ার্ড লিখুন">
+<main class="container">
 
-<button class="btn">অ্যাকাউন্ট তৈরি করুন</button>
+<div id="message" role="status" aria-live="polite"></div>
 
- </form>   <p class="subtitle">আগে থেকেই অ্যাকাউন্ট আছে?</p>  
- <button class="link" style="display:block;margin:auto"  
-  onclick="showPage('loginPage')">লগইন করুন</button>  
-</section>  <!-- HOME -->  <section class="page" id="homePage">  
- <div class="balance">  
-  <p>স্বাগতম,</p>  
-  <h2 id="homeName">ব্যবহারকারী</h2>  
-  <p>💚 RK LON BD তে আপনাকে স্বাগতম</p>  
- </div>   <div class="card">  
-  <div class="row">  
-   <div>  
-    <h3>আপনার অ্যাকাউন্ট</h3>  
-    <div class="small" id="homePhone"></div>  
-   </div>  
-   <button class="btn2" onclick="showPage('profilePage')">প্রোফাইল</button>  
-  </div>  
- </div>   <h3 style="margin:18px 3px">সকল সার্ভিস</h3>  
- <div class="menu-grid">  
-  <button class="menu-item" onclick="showPage('loanPage')"><span>💰</span>লোন আবেদন</button>  
-  <button class="menu-item" onclick="showPage('cashPage')"><span>💸</span>ক্যাশ আউট</button>  
-  <button class="menu-item" onclick="showPage('depositPage')"><span>🏦</span>জামানত</button>  
-  <button class="menu-item" onclick="showPage('profilePage')"><span>👤</span>প্রোফাইল</button>  
-  <button class="menu-item" onclick="showPage('myLoanPage')"><span>📋</span>আমার লোন</button>  
-  <button class="menu-item" onclick="showPage('transactionsPage')"><span>📜</span>লেনদেন</button>  
-  <button class="menu-item" onclick="showPage('inboxPage')"><span>📩</span>ইনবক্স</button>  
-  <button class="menu-item" onclick="showPage('contactPage')"><span>☎️</span>যোগাযোগ</button>  
-  <button class="menu-item" onclick="showPage('aboutPage')"><span>ℹ️</span>আমাদের সম্পর্কে</button>  
- </div>   <div class="card" style="margin-top:16px">  
-  <h3>📢 গুরুত্বপূর্ণ তথ্য</h3>  
-  <p class="small">এটি পরীক্ষামূলক অ্যাপ। লোন আবেদন বা লেনদেনের তথ্য শুধু এই ডিভাইসে ডেমো হিসেবে রাখা হয়।</p>  
- </div>  <button class="btn" onclick="logout()">লগআউট</button>
+<!-- LOGIN -->
+<section class="page card" id="loginPage">
+ <h2 style="text-align:center"> প্রবেশ করুন </h2>
+ <p class="subtitle">সদস্য হিসেবে প্রবেশ করুন</p>
 
-</section>  <!-- LOAN APPLICATION -->  <section class="page card" id="loanPage">  
- <h2>💰 লোন আবেদন</h2>  
- <p class="subtitle">আপনার আবেদন সম্পর্কে তথ্য দিন</p>   <form id="loanForm">  
-  <label>আপনার নাম</label>  
-  <input id="loanName" required maxlength="80">  <label>মোবাইল নম্বর</label>
-<input id="loanPhone" type="tel" required maxlength="11" pattern="01[3-9][0-9]{8}">
+ <form id="loginForm">
+  <label>মোবাইল নম্বর লিখুন</label>
+  <input id="loginPhone" type="tel" inputmode="numeric"
+   pattern="01[3-9][0-9]{8}" maxlength="11"
+   placeholder="01XXXXXXXXX" required>
 
-<label>লোনের পরিমাণ (টাকা)</label>
-<input id="loanAmount" type="number" min="1000" max="10000000" required placeholder="যেমন: 10000">
+  <label>পাসওয়ার্ড লিখুন</label>
+  <input id="loginPassword" type="password" required>
 
-<label>পরিশোধের সময়</label>
-<select id="loanMonths" required>
+  <button class="btn">লগইন</button>
+ </form>
 
-   <option value="">মাস নির্বাচন করুন</option>  
-   <option value="3">৩ মাস</option>  
-   <option value="6">৬ মাস</option>  
-   <option value="12">১২ মাস</option>  
-   <option value="18">১৮ মাস</option>  
-   <option value="24">২৪ মাস</option>  
-  </select>  <label>আবেদনের কারণ</label>
+ <p class="subtitle">নতুন ব্যবহারকারী?</p>
+ <button class="link" style="display:block;margin:auto"
+  onclick="showPage('registerPage')">➕ অ্যাকাউন্ট তৈরি করুন</button>
 
-  <textarea id="loanReason" required maxlength="500" placeholder="কেন লোন নিতে চান?"></textarea>  <button class="btn">আবেদন জমা দিন</button>
+ <div class="notice">📜 আপনি এগিয়ে গেলে আমাদের সকল নিয়ম ও শর্তাবলিতে সম্মতি দিয়েছেন বলে গণ্য হবে। ✅।</div>
+</section>
 
- </form>  
- <button class="btn2" onclick="showPage('homePage')">← হোমে ফিরে যান</button>  
-</section>  <!-- MY LOAN -->  <section class="page card" id="myLoanPage">  
- <h2>📋 আমার লোন</h2>  
- <div id="loanList"></div>  
- <button class="btn" onclick="showPage('loanPage')">নতুন আবেদন</button>  
- <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
-</section>  <!-- CASH OUT -->  <section class="page card" id="cashPage">  
- <h2>💸 ক্যাশ আউট</h2>  
- <p class="subtitle">ক্যাশ আউট ফর্ম</p>  
- <form id="cashForm">  
-  <label>মোবাইল নম্বর</label>  
-  <input id="cashPhone" type="tel" maxlength="11" required pattern="01[3-9][0-9]{8}">  
-  <label>পরিমাণ (টাকা)</label>  
-  <input id="cashAmount" type="number" min="1" max="10000000" required>  
-  <button class="btn">অনুরোধ জমা দিন</button>  
- </form>  
- <p class="small">এখান টাকা পাঠানো বা উত্তোলন হবে ।</p>  
- <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
-</section>  <!-- DEPOSIT -->  <section class="page card" id="depositPage">  
- <h2>🏦 ডিপোজিট</h2>  
- <p class="subtitle">ডেমো ডিপোজিট ফর্ম</p>  
- <form id="depositForm">  
-  <label>পরিমাণ (টাকা)</label>  
-  <input id="depositAmount" type="number" min="1" max="10000000" required>  
-  <label>পেমেন্ট পদ্ধতি</label>  
-  <select id="depositMethod" required>  
-   <option value="">পদ্ধতি নির্বাচন করুন</option>  
-   <option>বিকাশ </option>  
-   <option>নগদ </option>  
-   <option>রকেট </option>  
-  </select>  
-  <button class="btn">সেন্ড মানি করুন 01758706625</button>  
- </form>  
- <p class="small">এটি বাস্তব পেমেন্ট । টাকা পাঠাবেন </p>  
- <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
-</section>  <!-- PROFILE -->  <section class="page card" id="profilePage">  
- <h2>👤 আমার প্রোফাইল</h2>  
- <label>নাম</label>  
- <input id="profileName" maxlength="80">  
- <label>মোবাইল নম্বর</label>  
- <input id="profilePhone" disabled>  
- <button class="btn" onclick="saveProfile()">প্রোফাইল আপডেট করুন</button>  
- <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
-</section>  <!-- TRANSACTIONS -->  <section class="page card" id="transactionsPage">  
- <h2>📜 লেনদেনের ইতিহাস</h2>  
- <p class="small">অনুরোধের ইতিহাস এখানে দেখা যাবে।</p>  
- <div id="transactionList"></div>  
- <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
-</section>  <!-- INBOX -->  <section class="page card" id="inboxPage">  
- <h2>📩 ইনবক্স</h2>  
- <div class="list-item">💚 <b>My Finance</b><br>  
-  <span class="small">আপনাকে স্বাগতম! ইনবক্স।</span>  
- </div>  
- <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
-</section>  <!-- CONTACT -->  <section class="page card" id="contactPage">  
- <h2>☎️ যোগাযোগ</h2>  
- <p>অ্যাপ সম্পর্কে প্রশ্ন বা মতামত থাকলে নিচের ফর্ম পূরণ করুন।</p>  
- <form id="contactForm">  
-  <label>বিষয়</label>  
-  <input id="contactSubject" required maxlength="100">  
-  <label>আপনার বার্তা</label>  
-  <textarea id="contactMessage" required maxlength="1000"></textarea>  
-  <button class="btn">বার্তা সংরক্ষণ করুন</button>  
- </form>  
- <p class="small">এই  বার্তা শুধু আপনার ডিভাইসে সংরক্ষিত হবে; কাউকে পাঠানো হবে ।</p>  
- <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
-</section>  <!-- ABOUT -->  <section class="page card" id="aboutPage">  
- <h2>ℹ️ My Finance সম্পর্কে</h2>  
- <p>My Finance হলো একটি পরীক্ষামূলক আর্থিক অ্যাপের নমুনা।</p>  
- <p>এখানে লগইন, প্রোফাইল, লোন আবেদন ও ডেমো অনুরোধ পরীক্ষা করা যায়।</p>  
- <div class="notice">এই সংস্করণ কোনো ব্যাংক বা অনুমোদিত আর্থিক প্রতিষ্ঠানের সেবা । বাস্তব লেনদেন বা লোন অনুমোদন করে।</div>  
- <button class="btn2" onclick="showPage('homePage')">← হোম</button>  
-</section>  <div class="notice">  
- ⚠️ নিরাপত্তা সতর্কতা: এটি শুধু উপকারী অ্যাপস। পাসওয়ার্ড ব্রাউজারের স্টোরেজে সংরক্ষিত হয়, তাই বাস্তব পাসওয়ার্ড বা সংবেদনশীল তথ্য ব্যবহার করবেন। বাস্তব অ্যাপের জন্য নিরাপদ সার্ভার, ব্যবহারকারী যাচাই ও পেমেন্ট ইন্টিগ্রেশন দরকার।  
-</div>  </main>  <nav class="bottom-nav" id="bottomNav">  
- <button onclick="showPage('homePage')"><span>🏠</span>হোম</button>  
- <button onclick="showPage('loanPage')"><span>💰</span>লোন</button>  
- <button onclick="showPage('inboxPage')"><span>📩</span>ইনবক্স</button>  
-</nav>  <footer>My Finance · Demo Version</footer>  <script>  
-const pageIds = [  
- "loginPage","registerPage","homePage","loanPage","myLoanPage",  
- "cashPage","depositPage","profilePage","transactionsPage",  
- "inboxPage","contactPage","aboutPage"  
-];  
-  
-let currentAccount = null;  
-  
-function readData(key, fallback) {  
- try {  
-  const value = localStorage.getItem(key);  
-  return value ? JSON.parse(value) : fallback;  
- } catch(e) {  
-  return fallback;  
- }  
-}  
-  
-function saveData(key, value) {  
- try {  
-  localStorage.setItem(key, JSON.stringify(value));  
-  return true;  
- } catch(e) {  
-  return false;  
- }  
-}  
-  
-function showMessage(text, success=true) {  
- const box = document.getElementById("message");  
- box.textContent = text;  
- box.style.display = "block";  
- box.style.background = success ? "#e1f7e9" : "#ffebeb";  
- box.style.color = success ? "#176b3a" : "#a32020";  
- window.scrollTo({top:0,behavior:"smooth"});  
-}  
-  
-function clearMessage() {  
- document.getElementById("message").style.display = "none";  
-}  
-  
-function showPage(pageId) {  
- if (!pageIds.includes(pageId)) return;  
- pageIds.forEach(id => document.getElementById(id).style.display="none");  
- document.getElementById(pageId).style.display="block";  
- clearMessage();  
-  
- const loggedIn = Boolean(currentAccount);  
- document.getElementById("bottomNav").style.display =  
-  loggedIn && pageId !== "loginPage" && pageId !== "registerPage" ? "grid" : "none";  
-  
- if (loggedIn) {  
-  document.getElementById("homeName").textContent=currentAccount.name;  
-  document.getElementById("homePhone").textContent=currentAccount.phone;  
-  document.getElementById("profileName").value=currentAccount.name;  
-  document.getElementById("profilePhone").value=currentAccount.phone;  
-  document.getElementById("loanName").value=currentAccount.name;  
-  document.getElementById("loanPhone").value=currentAccount.phone;  
-  renderLoans();  
-  renderTransactions();  
- }  
-}  
-  
-function accountsRead() {  
- return readData("myFinanceAccounts", {});  
-}  
-  
-function saveCurrentAccount() {  
- const accounts=accountsRead();  
- accounts[currentAccount.phone]=currentAccount;  
- return saveData("myFinanceAccounts",accounts);  
-}  
-  
-document.getElementById("registerForm").addEventListener("submit",function(e){  
- e.preventDefault();  
- const name=document.getElementById("regName").value.trim();  
- const phone=document.getElementById("regPhone").value.trim();  
- const password=document.getElementById("regPassword").value;  
- const confirm=document.getElementById("regConfirm").value;  
-  
- if(password.length<8){  
-  showMessage("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।",false);return;  
- }  
- if(password!==confirm){  
-  showMessage("দুটি পাসওয়ার্ড এক নয়।",false);return;  
- }  
-  
- const accounts=accountsRead();  
- if(accounts[phone]){  
-  showMessage("এই নম্বরে অ্যাকাউন্ট আছে। লগইন করুন।",false);return;  
- }  
-  
- accounts[phone]={name:name,phone:phone,password:password,loans:[],transactions:[],messages:[]};  
- if(!saveData("myFinanceAccounts",accounts)){  
-  showMessage("অ্যাকাউন্ট সংরক্ষণ করা যায়নি।",false);return;  
- }  
-  
- document.getElementById("loginPhone").value=phone;  
- document.getElementById("loginPassword").value="";  
- this.reset();  
- showPage("loginPage");  
- showMessage("অ্যাকাউন্ট তৈরি হয়েছে। এখন লগইন করুন।");  
-});  
-  
-document.getElementById("loginForm").addEventListener("submit",function(e){  
- e.preventDefault();  
- const phone=document.getElementById("loginPhone").value.trim();  
- const password=document.getElementById("loginPassword").value;  
- const accounts=accountsRead();  
- const account=accounts[phone];  
-  
- if(!account || account.password!==password){  
-  showMessage("মোবাইল নম্বর বা পাসওয়ার্ড সঠিক নয়।",false);return;  
- }  
-  
- currentAccount=account;  
- this.reset();  
- showPage("homePage");  
- showMessage("লগইন সফল হয়েছে। স্বাগতম!");  
-});  
-  
-function logout() {  
- currentAccount=null;  
- showPage("loginPage");  
- showMessage("আপনি লগআউট করেছেন।");  
-}  
-  
-document.getElementById("loanForm").addEventListener("submit",function(e){  
- e.preventDefault();  
- if(!currentAccount){showPage("loginPage");return;}  
-  
- const amount=Number(document.getElementById("loanAmount").value);  
- const months=Number(document.getElementById("loanMonths").value);  
- if(!Number.isFinite(amount)||amount<1000||!months){  
-  showMessage("সঠিক লোনের পরিমাণ ও সময় নির্বাচন করুন।",false);return;  
- }  
-  
- currentAccount.loans=currentAccount.loans||[];  
- currentAccount.loans.unshift({  
-  id:Date.now(),amount:amount,months:months,  
-  reason:document.getElementById("loanReason").value.trim(),  
-  date:new Date().toLocaleString("bn-BD"),  
-  status:"আবেদন জমা হয়েছে"  
- });  
- currentAccount.transactions=currentAccount.transactions||[];  
- currentAccount.transactions.unshift({  
-  type:"লোন আবেদন",amount:amount,  
-  date:new Date().toLocaleString("bn-BD"),  
-  status:"অরজিনাল"  
- });  
-  
- if(!saveCurrentAccount()){  
-  showMessage("আবেদন সংরক্ষণ করা যায়নি।",false);return;  
- }  
- this.reset();  
- showPage("myLoanPage");  
- showMessage("আপনার লোন আবেদন সংরক্ষণ হয়েছে। এটি অনুমোদিত লোন ।");  
-});  
-  
-function renderLoans() {  
- const list=document.getElementById("loanList");  
- const loans=currentAccount && currentAccount.loans || [];  
- if(!loans.length){  
-  list.innerHTML='<p class="small">এখনো কোনো লোন আবেদন নেই।</p>';return;  
- }  
- list.replaceChildren();  
- loans.forEach(loan=>{  
-  const item=document.createElement("div");  
-  item.className="list-item";  
-  const title=document.createElement("b");  
-  title.textContent="লোন আবেদন · ৳"+Number(loan.amount).toLocaleString("en-US");  
-  const details=document.createElement("div");  
-  details.className="small";  
-  details.textContent=loan.months+" মাস · "+loan.date;  
-  const status=document.createElement("span");  
-  status.className="tag";  
-  status.textContent=loan.status;  
-  item.append(title,details,status);  
-  list.appendChild(item);  
- });  
-}  
-  
-function addTransaction(type,amount) {  
- currentAccount.transactions=currentAccount.transactions||[];  
- currentAccount.transactions.unshift({  
-  type:type,amount:Number(amount),  
-  date:new Date().toLocaleString("bn-BD"),  
-  status:"ডেমো অনুরোধ"  
- });  
- if(!saveCurrentAccount()){  
-  showMessage("তথ্য সংরক্ষণ করা যায়নি।",false);return false;  
- }  
- renderTransactions();  
- return true;  
-}  
-  
-document.getElementById("cashForm").addEventListener("submit",function(e){  
- e.preventDefault();  
- if(!currentAccount)return;  
- const amount=Number(document.getElementById("cashAmount").value);  
- if(!Number.isFinite(amount)||amount<=0){showMessage("সঠিক পরিমাণ লিখুন।",false);return;}  
- if(!addTransaction("ক্যাশ আউট",amount))return;  
- this.reset();  
- showPage("transactionsPage");  
- showMessage("ডেমো ক্যাশ আউট অনুরোধ সংরক্ষণ হয়েছে। বাস্তব টাকা পাঠানো হয়নি।");  
-});  
-  
-document.getElementById("depositForm").addEventListener("submit",function(e){  
- e.preventDefault();  
- if(!currentAccount)return;  
- const amount=Number(document.getElementById("depositAmount").value);  
- const method=document.getElementById("depositMethod").value;  
- if(!Number.isFinite(amount)||amount<=0||!method){  
-  showMessage("সঠিক তথ্য দিন।",false);return;  
- }  
- if(!addTransaction("ডিপোজিট · "+method,amount))return;  
- this.reset();  
- showPage("transactionsPage");  
- showMessage("ডিপোজিট অনুরোধ সংরক্ষণ হয়েছে। কোনো টাকা জমা হচ্ছে।");  
-});  
-  
-function renderTransactions() {  
- const list=document.getElementById("transactionList");  
- const transactions=currentAccount && currentAccount.transactions || [];  
- if(!transactions.length){  
-  list.innerHTML='<p class="small">এখনো কোনো লেনদেন নেই।</p>';
-    return;
+<!-- REGISTER -->
+<section class="page card" id="registerPage">
+ <h2 style="text-align:center">📝 নতুন অ্যাকাউন্ট</h2>
+
+ <form id="registerForm">
+  <label>পুরো নাম</label>
+  <input id="regName" maxlength="80" required>
+
+  <label>মোবাইল নম্বর</label>
+  <input id="regPhone" type="tel" inputmode="numeric"
+   pattern="01[3-9][0-9]{8}" maxlength="11" required>
+
+  <label>পাসওয়ার্ড</label>
+  <input id="regPassword" type="password" minlength="8" required>
+
+  <label>পাসওয়ার্ড নিশ্চিত করুন</label>
+  <input id="regConfirm" type="password" minlength="8" required>
+
+  <button class="btn">অ্যাকাউন্ট তৈরি করুন</button>
+ </form>
+
+ <button class="link" onclick="showPage('loginPage')">লগইন করুন</button>
+</section>
+
+<!-- HOME -->
+<section class="page" id="homePage">
+ <div class="balance">
+  <p>স্বাগতম,</p>
+  <h2 id="homeName">ব্যবহারকারী</h2>
+  <p>💚 RK LON BD তে আপনাকে স্বাগতম</p>
+  <p style="margin-top:12px">আপনার ব্যালেন্স: <b id="homeBalance">৳০</b></p>
+ </div>
+
+ <div class="card">
+  <div class="row">
+   <div>
+    <h3>আপনার অ্যাকাউন্ট</h3>
+    <div class="small" id="homePhone"></div>
+   </div>
+   <button class="btn2" onclick="showPage('profilePage')">প্রোফাইল</button>
+  </div>
+ </div>
+
+ <h3>সকল সার্ভিস</h3>
+ <div class="menu-grid">
+  <button class="menu-item" onclick="showPage('loanPage')"><span>💰</span>লোন আবেদন</button>
+  <button class="menu-item" onclick="showPage('cashPage')"><span>💸</span>লোন উইথড্র</button>
+  <button class="menu-item" onclick="showPage('depositPage')"><span>🏦</span>জামানত</button>
+  <button class="menu-item" onclick="showPage('profilePage')"><span>👤</span>প্রোফাইল</button>
+  <button class="menu-item" onclick="showPage('myLoanPage')"><span>📋</span>আমার লোন</button>
+  <button class="menu-item" onclick="showPage('transactionsPage')"><span>📜</span>লেনদেন</button>
+  <button class="menu-item" onclick="showPage('inboxPage')"><span>📩</span>ইনবক্স</button>
+  <button class="menu-item" onclick="showPage('contactPage')"><span>☎️</span>যোগাযোগ</button>
+  <button class="menu-item" onclick="showPage('aboutPage')"><span>ℹ️</span>আমাদের সম্পর্কে</button>
+ </div>
+
+ <div class="card" style="margin-top:16px">
+  <h3>📢 গুরুত্বপূর্ণ তথ্য</h3>
+  <p class="small">এই অ্যাপের তথ্য বর্তমান ডিভাইসের ব্রাউজারে সংরক্ষিত হয়।</p>
+ </div>
+
+ <button class="btn" onclick="logout()">লগআউট</button>
+</section>
+
+<!-- LOAN -->
+<section class="page card" id="loanPage">
+ <h2>💰 লোন আবেদন</h2>
+
+ <div class="notice">
+  লোন আবেদনের আগে ৫০০ টাকা জামানতের অনুরোধ জমা ও কোম্পানির যাচাই প্রয়োজন।
+ </div>
+
+ <form id="loanForm">
+  <label>আপনার নাম</label>
+  <input id="loanName" maxlength="80" required>
+
+  <label>মোবাইল নম্বর</label>
+  <input id="loanPhone" type="tel" maxlength="11"
+   pattern="01[3-9][0-9]{8}" required>
+
+  <label>লোনের পরিমাণ (টাকা)</label>
+  <input id="loanAmount" type="number" min="1000" max="10000000" required>
+
+  <label>পরিশোধের সময়</label>
+  <select id="loanMonths" required>
+   <option value="">মাস নির্বাচন করুন</option>
+   <option value="3">৩ মাস</option>
+   <option value="6">৬ মাস</option>
+   <option value="12">১২ মাস</option>
+   <option value="18">১৮ মাস</option>
+   <option value="24">২৪ মাস</option>
+  </select>
+
+  <div class="calculation">
+   <h3>📊 কিস্তির হিসাব</h3>
+   <p>মূল টাকা: <b id="calcPrincipal">৳০.০০</b></p>
+   <p>মাসিক সুদ: <b>৩%</b></p>
+   <p>মোট সুদ: <b id="calcInterest">৳০.০০</b></p>
+   <p>মোট পরিশোধ: <b id="calcTotal">৳০.০০</b></p>
+   <h3>মাসিক কিস্তি: <span id="calcInstallment">৳০.০০</span></h3>
+  </div>
+
+  <label>আবেদনের কারণ</label>
+  <textarea id="loanReason" maxlength="500" required></textarea>
+
+  <button class="btn">আবেদন জমা করুন</button>
+ </form>
+
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- MY LOANS -->
+<section class="page card" id="myLoanPage">
+ <h2>📋 আমার লোন</h2>
+ <div id="loanList"></div>
+ <button class="btn" onclick="showPage('loanPage')">নতুন আবেদন</button>
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- CASH OUT -->
+<section class="page card" id="cashPage">
+ <h2>💸 ক্যাশ আউট</h2>
+
+ <form id="cashForm">
+  <label>মোবাইল নম্বর</label>
+  <input id="cashPhone" type="tel" maxlength="11"
+   pattern="01[3-9][0-9]{8}" required>
+
+  <label>পরিমাণ (টাকা)</label>
+  <input id="cashAmount" type="number" min="1" required>
+
+  <button class="btn">অনুরোধ জমা দিন</button>
+ </form>
+
+ <p class="small">এটি অনুরোধ; টাকা উত্তোলন হয়।</p>
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- DEPOSIT WITH TRANSACTION INPUT BOX -->
+<section class="page card" id="depositPage">
+ <h2>🏦 জামানত / ডিপোজিট</h2>
+
+ <div class="calculation">
+  <h3>লোন আবেদনের জামানত</h3>
+  <h2>৳৫০০</h2>
+  <p class="small">জামানতের অনুরোধ অ্যাডমিন যাচাই করবেন।</p>
+ </div>
+
+ <div class="notice">
+  টাকা পাঠানোর আগে পেমেন্টের নির্দেশনা ও প্রাপকের তথ্য নিশ্চিত করুন।
+  নিচের ফর্মটি পেমেন্টের তথ্য জমা দেওয়ার জন্য।
+ </div>
+
+ <form id="depositForm">
+  <label>জামানতের পরিমাণ (টাকা)</label>
+  <input id="depositAmount" type="number" min="500" value="500" required>
+
+  <label>পেমেন্ট পদ্ধতি</label>
+  <select id="depositMethod" required>
+   <option value="">পদ্ধতি নির্বাচন করুন</option>
+   <option value="বিকাশ">বিকাশ</option>
+   <option value="নগদ">নগদ</option>
+   <option value="রকেট">রকেট</option>
+  </select>
+
+  <label>যে নম্বর থেকে টাকা পাঠিয়েছেন</label>
+  <input id="senderPhone" type="tel" maxlength="11"
+   pattern="01[3-9][0-9]{8}" placeholder="01XXXXXXXXX" required>
+
+  <label>ট্রানজেকশন আইডি (TrxID)</label>
+  <input id="depositTrxId" type="text" maxlength="100"
+   placeholder="আপনার Transaction ID লিখুন" required>
+
+  <label>পেমেন্টের অতিরিক্ত তথ্য (ঐচ্ছিক)</label>
+  <textarea id="depositNote" maxlength="300"
+   placeholder="প্রয়োজন হলে অতিরিক্ত তথ্য লিখুন"></textarea>
+
+  <button class="btn">জামানতের তথ্য জমা দিন</button>
+ </form>
+
+ <div class="transaction-box">
+  <h3>📜 আমার জামানতের ট্রানজেকশন হিস্টরি</h3>
+  <div id="depositHistory"></div>
+ </div>
+
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- PROFILE -->
+<section class="page card" id="profilePage">
+ <h2>👤 আমার প্রোফাইল</h2>
+ <label>নাম</label>
+ <input id="profileName" maxlength="80">
+
+ <label>মোবাইল নম্বর</label>
+ <input id="profilePhone" disabled>
+
+ <button class="btn" onclick="saveProfile()">প্রোফাইল আপডেট করুন</button>
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- TRANSACTIONS -->
+<section class="page card" id="transactionsPage">
+ <h2>📜 লেনদেনের ইতিহাস</h2>
+ <div id="transactionList"></div>
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- INBOX -->
+<section class="page card" id="inboxPage">
+ <h2>📩 ইনবক্স</h2>
+ <div id="inboxList"></div>
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- CONTACT -->
+<section class="page card" id="contactPage">
+ <h2>☎️ যোগাযোগ</h2>
+
+ <form id="contactForm">
+  <label>বিষয়</label>
+  <input id="contactSubject" maxlength="100" required>
+
+  <label>আপনার বার্তা</label>
+  <textarea id="contactMessage" maxlength="1000" required></textarea>
+
+  <button class="btn">বার্তা সংরক্ষণ করুন</button>
+ </form>
+
+ <p class="small">বার্তাটি এই ডিভাইসে সংরক্ষণ করা হবে।</p>
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- ABOUT -->
+<section class="page card" id="aboutPage">
+ <h2>ℹ️ RK LON BD সম্পর্কে</h2>
+ <p>এটি একটি পরীক্ষামূলক আর্থিক অ্যাপ ।</p>
+ <div class="notice">এই সংস্করণ বাস্তব পেমেন্ট বা লোন অনুমোদন করে ।</div>
+ <button class="btn2" onclick="showPage('homePage')">← হোম</button>
+</section>
+
+<!-- ADMIN LOGIN -->
+<section class="page card" id="adminLoginPage">
+ <h2>⚠️༒ প্রবেশ নিষেধ ༒⚠️</h2>
+ <p class="small">👑🔒 কর্তৃপক্ষের জন্য সংরক্ষিত 🔒👑</p>
+
+ <form id="adminLoginForm">
+  <label>⚠️🚫 কোম্পানির নিজস্ব সম্পত্তি 🚫⚠️</label>
+  <input id="adminPasswordInput" type="password" required>
+  <button class="btn">⚠️༒ প্রবেশ নিষেধ ༒⚠️</button>
+ </form>
+
+ <button class="btn2" onclick="backFromAdmin()">← ফিরে যান</button>
+</section>
+
+<!-- ADMIN PANEL -->
+<section class="page card" id="adminPage">
+ <div class="row">
+  <h2>👨‍💼 অ্যাডমিন প্যানেল</h2>
+  <button class="btn2" onclick="adminLogout()">লগআউট</button>
+ </div>
+
+ <div class="admin-stat">মোট গ্রাহক: <b id="adminUserCount">০</b></div>
+ <div class="admin-stat">জামানতের অনুরোধ: <b id="adminDepositCount">০</b></div>
+ <div class="admin-stat">লোন আবেদন: <b id="adminLoanCount">০</b></div>
+
+ <h3>🔑 অ্যাডমিন পাসওয়ার্ড পরিবর্তন</h3>
+ <form id="changeAdminPasswordForm">
+  <label>বর্তমান পাসওয়ার্ড</label>
+  <input id="oldAdminPassword" type="password" required>
+
+  <label>নতুন পাসওয়ার্ড</label>
+  <input id="newAdminPassword" type="password" minlength="8" required>
+
+  <button class="btn">পাসওয়ার্ড পরিবর্তন</button>
+ </form>
+
+ <h3 style="margin-top:25px">💰 গ্রাহকদের অ্যাকাউন্ট</h3>
+ <div id="adminUsers"></div>
+
+ <h3 style="margin-top:25px">🏦 জামানতের অনুরোধ</h3>
+ <div id="adminDeposits"></div>
+
+ <h3 style="margin-top:25px">📋 লোন আবেদন</h3>
+ <div id="adminLoans"></div>
+
+ <button class="btn2" onclick="adminLogout()">অ্যাডমিন থেকে বের হন</button>
+</section>
+
+<div class="notice">
+💚 সহজ আবেদন বিশ্বস্ত সেবা: ৳১,০০০–৳৫০,০০০ পর্যন্ত লোনের সুবিধা,০৩% সুদে। সহজ আবেদন, কোম্পানির যাচাই ও অনুমোদন সাপেক্ষে লোন গ্রহণ করুন এবং সময়মতো কিস্তি পরিশোধ আবশ্যক।
+</div>
+
+</main>
+
+<nav class="bottom-nav" id="bottomNav">
+ <button onclick="showPage('homePage')"><span>🏠</span>হোম</button>
+ <button onclick="showPage('loanPage')"><span>💰</span>লোন</button>
+ <button onclick="showPage('inboxPage')"><span>📩</span>ইনবক্স</button>
+</nav>
+
+<script>
+const pageIds = [
+ "loginPage","registerPage","homePage","loanPage","myLoanPage",
+ "cashPage","depositPage","profilePage","transactionsPage",
+ "inboxPage","contactPage","aboutPage","adminLoginPage","adminPage"
+];
+
+let currentAccount = null;
+let adminLoggedIn = false;
+let previousPage = "loginPage";
+
+const DEFAULT_ADMIN_PASSWORD = "admin123";
+
+function readData(key,fallback){
+ try{
+  const v=localStorage.getItem(key);
+  return v ? JSON.parse(v) : fallback;
+ }catch(e){return fallback;}
+}
+
+function saveData(key,value){
+ try{
+  localStorage.setItem(key,JSON.stringify(value));
+  return true;
+ }catch(e){return false;}
+}
+
+function accountsRead(){
+ return readData("myFinanceAccounts",{});
+}
+
+function saveCurrentAccount(){
+ if(!currentAccount)return false;
+ const accounts=accountsRead();
+ accounts[currentAccount.phone]=currentAccount;
+ return saveData("myFinanceAccounts",accounts);
+}
+
+function showMessage(text,success=true){
+ const box=document.getElementById("message");
+ box.textContent=text;
+ box.style.display="block";
+ box.style.background=success?"#e1f7e9":"#ffebeb";
+ box.style.color=success?"#176b3a":"#a32020";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function clearMessage(){
+ document.getElementById("message").style.display="none";
+}
+
+function money(value){
+ return "৳"+Number(value||0).toLocaleString("en-BD",{
+  minimumFractionDigits:2,
+  maximumFractionDigits:2
+ });
+}
+
+function showPage(pageId){
+ if(!pageIds.includes(pageId))return;
+
+ if(pageId==="adminPage"&&!adminLoggedIn)return;
+ if(pageId==="adminLoginPage")adminLoggedIn=false;
+
+ pageIds.forEach(id=>{
+  document.getElementById(id).style.display="none";
+ });
+
+ document.getElementById(pageId).style.display="block";
+ clearMessage();
+
+ document.getElementById("bottomNav").style.display=
+  currentAccount&&pageId!=="loginPage"&&pageId!=="registerPage"&&
+  pageId!=="adminPage"&&pageId!=="adminLoginPage"?"grid":"none";
+
+ if(currentAccount){
+  document.getElementById("homeName").textContent=currentAccount.name;
+  document.getElementById("homePhone").textContent=currentAccount.phone;
+  document.getElementById("homeBalance").textContent=money(currentAccount.balance);
+  document.getElementById("profileName").value=currentAccount.name;
+  document.getElementById("profilePhone").value=currentAccount.phone;
+  document.getElementById("loanName").value=currentAccount.name;
+  document.getElementById("loanPhone").value=currentAccount.phone;
+
+  renderLoans();
+  renderTransactions();
+  renderDepositHistory();
+  renderInbox();
+  calculateLoan();
  }
+}
+
+function openAdmin(){
+ previousPage=currentAccount?"homePage":"loginPage";
+ showPage("adminLoginPage");
+}
+
+function backFromAdmin(){
+ if(currentAccount)showPage(previousPage==="adminPage"?"homePage":previousPage);
+ else showPage("loginPage");
+}
+
+function getAdminPassword(){
+ return localStorage.getItem("rkLonAdminPassword")||DEFAULT_ADMIN_PASSWORD;
+}
+
+/* REGISTER */
+document.getElementById("registerForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ const name=document.getElementById("regName").value.trim();
+ const phone=document.getElementById("regPhone").value.trim();
+ const password=document.getElementById("regPassword").value;
+ const confirm=document.getElementById("regConfirm").value;
+
+ if(password.length<8){
+  showMessage("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।",false);return;
+ }
+
+ if(password!==confirm){
+  showMessage("দুটি পাসওয়ার্ড এক নয়।",false);return;
+ }
+
+ const accounts=accountsRead();
+
+ if(accounts[phone]){
+  showMessage("এই নম্বরে অ্যাকাউন্ট আছে। লগইন করুন।",false);return;
+ }
+
+ accounts[phone]={
+  name,phone,password,balance:0,
+  loans:[],transactions:[],messages:[],
+  depositHistory:[],depositPaid:false
+ };
+
+ if(!saveData("myFinanceAccounts",accounts)){
+  showMessage("অ্যাকাউন্ট সংরক্ষণ করা যায়নি।",false);return;
+ }
+
+ document.getElementById("loginPhone").value=phone;
+ this.reset();
+ showPage("loginPage");
+ showMessage("অ্যাকাউন্ট তৈরি হয়েছে। এখন লগইন করুন।");
+});
+
+/* LOGIN */
+document.getElementById("loginForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ const phone=document.getElementById("loginPhone").value.trim();
+ const password=document.getElementById("loginPassword").value;
+ const account=accountsRead()[phone];
+
+ if(!account||account.password!==password){
+  showMessage("মোবাইল নম্বর বা পাসওয়ার্ড সঠিক নয়।",false);return;
+ }
+
+ currentAccount=account;
+ currentAccount.balance=Number(currentAccount.balance)||0;
+ currentAccount.loans=currentAccount.loans||[];
+ currentAccount.transactions=currentAccount.transactions||[];
+ currentAccount.messages=currentAccount.messages||[];
+ currentAccount.depositHistory=currentAccount.depositHistory||[];
+ currentAccount.depositPaid=currentAccount.depositPaid===true;
+
+ this.reset();
+ showPage("homePage");
+ showMessage("লগইন সফল হয়েছে।");
+});
+
+function logout(){
+ currentAccount=null;
+ showPage("loginPage");
+ showMessage("আপনি লগআউট করেছেন।");
+}
+
+/* ADMIN LOGIN */
+document.getElementById("adminLoginForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ if(document.getElementById("adminPasswordInput").value!==getAdminPassword()){
+  showMessage("⚠️ সীমান্ত অতিক্রম নিষিদ্ধ ☠️।",false);return;
+ }
+
+ adminLoggedIn=true;
+ this.reset();
+ showPage("adminPage");
+ renderAdmin();
+ showMessage("অ্যাডমিন প্যানেলে প্রবেশ সফল হয়েছে।");
+});
+
+function adminLogout(){
+ adminLoggedIn=false;
+ if(currentAccount)showPage("homePage");
+ else showPage("loginPage");
+}
+
+/* CHANGE ADMIN PASSWORD */
+document.getElementById("changeAdminPasswordForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ const oldPass=document.getElementById("oldAdminPassword").value;
+ const newPass=document.getElementById("newAdminPassword").value;
+
+ if(oldPass!==getAdminPassword()){
+  showMessage("বর্তমান পাসওয়ার্ড সঠিক নয়।",false);return;
+ }
+
+ if(newPass.length<8){
+  showMessage("নতুন পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।",false);return;
+ }
+
+ localStorage.setItem("rkLonAdminPassword",newPass);
+ this.reset();
+ showMessage("অ্যাডমিন পাসওয়ার্ড পরিবর্তন হয়েছে।");
+});
+
+/* LOAN CALCULATOR */
+function calculateLoan(){
+ const amount=Number(document.getElementById("loanAmount").value);
+ const months=Number(document.getElementById("loanMonths").value);
+
+ const interest=amount>0&&months>0?amount*0.03*months:0;
+ const total=amount>0&&months>0?amount+interest:0;
+ const installment=months>0?total/months:0;
+
+ document.getElementById("calcPrincipal").textContent=money(amount);
+ document.getElementById("calcInterest").textContent=money(interest);
+ document.getElementById("calcTotal").textContent=money(total);
+ document.getElementById("calcInstallment").textContent=money(installment);
+}
+
+document.getElementById("loanAmount").addEventListener("input",calculateLoan);
+document.getElementById("loanMonths").addEventListener("change",calculateLoan);
+
+/* LOAN SUBMISSION */
+document.getElementById("loanForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ if(!currentAccount)return;
+
+ if(currentAccount.depositPaid!==true){
+  showMessage("লোন আবেদন করার আগে ৫০০ টাকা জামানত জমা ও যাচাই করাতে হবে।",false);
+  showPage("depositPage");
+  showMessage("জামানতের তথ্য জমা দিন। অ্যাডমিন যাচাই না করা পর্যন্ত আবেদন জমা হবে না।",false);
+  return;
+ }
+
+ const amount=Number(document.getElementById("loanAmount").value);
+ const months=Number(document.getElementById("loanMonths").value);
+ const reason=document.getElementById("loanReason").value.trim();
+
+ if(!Number.isFinite(amount)||amount<1000||
+    ![3,6,12,18,24].includes(months)){
+  showMessage("সঠিক লোনের পরিমাণ ও মেয়াদ দিন।",false);return;
+ }
+
+ const interest=amount*0.03*months;
+ const total=amount+interest;
+
+ currentAccount.loans.unshift({
+  id:Date.now(),amount,months,reason,interest,total,
+  date:new Date().toLocaleString("bn-BD"),
+  status:"আবেদন জমা হয়েছে"
+ });
+
+ currentAccount.transactions.unshift({
+  type:"লোন আবেদন",amount,
+  date:new Date().toLocaleString("bn-BD"),
+  status:"পর্যালোচনাধীন"
+ });
+
+ if(!saveCurrentAccount()){
+  showMessage("আবেদন সংরক্ষণ করা যায়নি।",false);return;
+ }
+
+ this.reset();
+ calculateLoan();
+ showPage("myLoanPage");
+ showMessage("লোন আবেদন সংরক্ষিত হয়েছে।");
+});
+
+function renderLoans(){
+ const list=document.getElementById("loanList");
  list.replaceChildren();
- transactions.forEach(tx=>{
+
+ const loans=currentAccount&&currentAccount.loans||[];
+
+ if(!loans.length){
+  list.textContent="এখনো কোনো লোন আবেদন নেই।";
+  return;
+ }
+
+ loans.forEach(loan=>{
   const item=document.createElement("div");
   item.className="list-item";
 
   const title=document.createElement("b");
-  title.textContent=tx.type+" · ৳"+Number(tx.amount).toLocaleString("en-US");
+  title.textContent="লোন · "+money(loan.amount);
 
-  const date=document.createElement("div");
-  date.className="small";
-  date.textContent=tx.date+" · "+tx.status;
+  const detail=document.createElement("div");
+  detail.className="small";
+  detail.textContent=loan.months+" মাস · "+loan.date+
+   " · মাসিক কিস্তি "+money((loan.total||loan.amount)/loan.months);
 
-  item.append(title,date);
+  const status=document.createElement("span");
+  status.className="tag";
+  status.textContent=loan.status;
+
+  item.append(title,detail,status);
   list.appendChild(item);
  });
 }
 
-function saveProfile() {
+/* TRANSACTIONS */
+function addTransaction(type,amount,status="R অনুরোধ"){
+ currentAccount.transactions=currentAccount.transactions||[];
+ currentAccount.transactions.unshift({
+  type,amount:Number(amount),
+  date:new Date().toLocaleString("bn-BD"),status
+ });
+ return saveCurrentAccount();
+}
+
+function renderTransactions(){
+ const list=document.getElementById("transactionList");
+ list.replaceChildren();
+
+ const data=currentAccount&&currentAccount.transactions||[];
+
+ if(!data.length){
+  list.textContent="এখনো কোনো লেনদেন নেই।";
+  return;
+ }
+
+ data.forEach(tx=>{
+  const item=document.createElement("div");
+  item.className="list-item";
+  const title=document.createElement("b");
+  title.textContent=tx.type+" · "+money(tx.amount);
+  const detail=document.createElement("div");
+  detail.className="small";
+  detail.textContent=tx.date+" · "+tx.status;
+  item.append(title,detail);
+  list.appendChild(item);
+ });
+}
+
+/* CASH OUT */
+document.getElementById("cashForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ if(!currentAccount)return;
+
+ const amount=Number(document.getElementById("cashAmount").value);
+ const phone=document.getElementById("cashPhone").value.trim();
+
+ if(!/^01[3-9]\d{8}$/.test(phone)||!Number.isFinite(amount)||amount<=0){
+  showMessage("সঠিক তথ্য দিন।",false);return;
+ }
+
+ if(!addTransaction("ক্যাশ আউট",amount,"যাচাই হয়নি")){
+  showMessage("সংরক্ষণ করা যায়নি।",false);return;
+ }
+
+ this.reset();
+ showPage("transactionsPage");
+ showMessage("ক্যাশ আউট অনুরোধ সংরক্ষণ হয়েছে। টাকা পাঠানো হচ্ছে।");
+});
+
+/* DEPOSIT TRANSACTION FORM */
+document.getElementById("depositForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ if(!currentAccount)return;
+
+ const amount=Number(document.getElementById("depositAmount").value);
+ const method=document.getElementById("depositMethod").value;
+ const sender=document.getElementById("senderPhone").value.trim();
+ const trxId=document.getElementById("depositTrxId").value.trim();
+ const note=document.getElementById("depositNote").value.trim();
+
+ if(!Number.isFinite(amount)||amount<500||!method||
+    !/^01[3-9]\d{8}$/.test(sender)||!trxId){
+  showMessage("সঠিক পেমেন্ট তথ্য দিন। জামানতের পরিমাণ অন্তত ৫০০ টাকা হতে হবে।",false);
+  return;
+ }
+
+ const accounts=accountsRead();
+
+ /* Prevent duplicate demo transaction IDs across accounts. */
+ const duplicate=Object.values(accounts).some(acc=>
+  (acc.depositHistory||[]).some(tx=>
+   String(tx.trxId).toLowerCase()===trxId.toLowerCase()
+  )
+ );
+
+ if(duplicate){
+  showMessage("এই ট্রানজেকশন আইডি আগে জমা দেওয়া হয়েছে।",false);
+  return;
+ }
+
+ currentAccount.depositHistory=currentAccount.depositHistory||[];
+
+ currentAccount.depositHistory.unshift({
+  id:"REQ-"+Date.now(),
+  trxId,
+  amount,
+  method,
+  sender,
+  note,
+  date:new Date().toLocaleString("bn-BD"),
+  status:"অপেক্ষমাণ"
+ });
+
+ currentAccount.transactions=currentAccount.transactions||[];
+
+ currentAccount.transactions.unshift({
+  type:"জামানত ("+method+")",
+  amount,
+  date:new Date().toLocaleString("bn-BD"),
+  status:"অ্যাডমিন যাচাইয়ের অপেক্ষায়"
+ });
+
+ /* A submitted form is not proof of payment. */
+ currentAccount.depositPaid=currentAccount.depositPaid===true;
+
+ if(!saveCurrentAccount()){
+  showMessage("তথ্য সংরক্ষণ করা যায়নি।",false);return;
+ }
+
+ this.reset();
+ document.getElementById("depositAmount").value="500";
+ showPage("depositPage");
+ showMessage("ট্রানজেকশন তথ্য জমা হয়েছে। অ্যাডমিন যাচাইয়ের অপেক্ষায় রয়েছে।");
+});
+
+function renderDepositHistory(){
+ const list=document.getElementById("depositHistory");
+ list.replaceChildren();
+
+ const history=currentAccount&&currentAccount.depositHistory||[];
+
+ if(!history.length){
+  list.textContent="এখনো কোনো ট্রানজেকশন জমা দেওয়া হয়নি।";
+  return;
+ }
+
+ history.forEach(tx=>{
+  const item=document.createElement("div");
+  item.className="list-item";
+
+  const title=document.createElement("b");
+  title.textContent=money(tx.amount)+" · "+tx.method;
+
+  const detail=document.createElement("div");
+  detail.className="small";
+  detail.textContent="TrxID: "+tx.trxId+
+   " · প্রেরক: "+tx.sender+" · "+tx.date;
+
+  const status=document.createElement("span");
+  status.className="tag";
+  status.textContent=tx.status;
+
+  item.append(title,detail,status);
+  list.appendChild(item);
+ });
+}
+
+/* PROFILE */
+function saveProfile(){
  if(!currentAccount)return;
 
  const name=document.getElementById("profileName").value.trim();
  if(!name){
-  showMessage("নাম লিখুন।",false);
-  return;
+  showMessage("নাম লিখুন।",false);return;
  }
 
  currentAccount.name=name;
 
  if(!saveCurrentAccount()){
-  showMessage("প্রোফাইল সংরক্ষণ করা যায়নি।",false);
-  return;
+  showMessage("প্রোফাইল সংরক্ষণ করা যায়নি।",false);return;
  }
 
  showPage("profilePage");
  showMessage("প্রোফাইল আপডেট হয়েছে।");
 }
 
+/* CONTACT AND INBOX */
 document.getElementById("contactForm").addEventListener("submit",function(e){
  e.preventDefault();
  if(!currentAccount)return;
@@ -531,15 +944,320 @@ document.getElementById("contactForm").addEventListener("submit",function(e){
  });
 
  if(!saveCurrentAccount()){
-  showMessage("বার্তা সংরক্ষণ করা যায়নি।",false);
-  return;
+  showMessage("বার্তা সংরক্ষণ করা যায়নি।",false);return;
  }
 
  this.reset();
  showPage("inboxPage");
- showMessage("বার্তা আপনার ডিভাইসে সংরক্ষণ হয়েছে। কাউকে পাঠানো হয়নি।");
+ showMessage("বার্তা সংরক্ষণ হয়েছে।");
 });
 
+function renderInbox(){
+ const list=document.getElementById("inboxList");
+ list.replaceChildren();
+
+ const messages=currentAccount&&currentAccount.messages||[];
+
+ if(!messages.length){
+  list.textContent="এখনো কোনো বার্তা নেই।";
+  return;
+ }
+
+ messages.forEach(msg=>{
+  const item=document.createElement("div");
+  item.className="list-item";
+  const title=document.createElement("b");
+  title.textContent=msg.subject;
+  const body=document.createElement("div");
+  body.textContent=msg.message;
+  const date=document.createElement("div");
+  date.className="small";
+  date.textContent=msg.date;
+  item.append(title,body,date);
+  list.appendChild(item);
+ });
+}
+
+/* ADMIN DASHBOARD */
+function renderAdmin(){
+ if(!adminLoggedIn)return;
+
+ const accounts=accountsRead();
+ const users=Object.values(accounts);
+
+ document.getElementById("adminUserCount").textContent=users.length;
+
+ let deposits=0,loans=0;
+
+ users.forEach(acc=>{
+  deposits+=(acc.depositHistory||[]).filter(tx=>tx.status==="অপেক্ষমাণ").length;
+  loans+=(acc.loans||[]).filter(loan=>loan.status==="আবেদন জমা হয়েছে").length;
+ });
+
+ document.getElementById("adminDepositCount").textContent=deposits;
+ document.getElementById("adminLoanCount").textContent=loans;
+
+ renderAdminUsers(users);
+ renderAdminDeposits(users);
+ renderAdminLoans(users);
+}
+
+function renderAdminUsers(users){
+ const list=document.getElementById("adminUsers");
+ list.replaceChildren();
+
+ users.forEach(acc=>{
+  const box=document.createElement("div");
+  box.className="admin-card";
+
+  const title=document.createElement("b");
+  title.textContent=acc.name+" · "+acc.phone;
+
+  const balance=document.createElement("p");
+  balance.textContent="বর্তমান ব্যালেন্স: "+money(acc.balance);
+
+  const input=document.createElement("input");
+  input.type="number";
+  input.min="0";
+  input.step="0.01";
+  input.placeholder="ব্যালেন্স যোগ করার পরিমাণ";
+
+  const btn=document.createElement("button");
+  btn.className="btn";
+  btn.textContent="ব্যালেন্স যোগ করুন";
+
+  btn.onclick=()=>{
+   const amount=Number(input.value);
+
+   if(!Number.isFinite(amount)||amount<=0){
+    showMessage("সঠিক ব্যালেন্সের পরিমাণ লিখুন।",false);return;
+   }
+
+   const latest=accountsRead();
+   const target=latest[acc.phone];
+
+   if(!target){
+    showMessage("গ্রাহকের অ্যাকাউন্ট পাওয়া যায়নি।",false);return;
+   }
+
+   target.balance=(Number(target.balance)||0)+amount;
+   target.transactions=target.transactions||[];
+   target.transactions.unshift({
+    type:"অ্যাডমিন ব্যালেন্স যোগ",
+    amount,
+    date:new Date().toLocaleString("bn-BD"),
+    status:"ডেমো ব্যালেন্স সমন্বয়"
+   });
+
+   if(!saveData("myFinanceAccounts",latest)){
+    showMessage("ব্যালেন্স সংরক্ষণ করা যায়নি।",false);return;
+   }
+
+   if(currentAccount&&currentAccount.phone===acc.phone){
+    currentAccount=target;
+    document.getElementById("homeBalance").textContent=money(target.balance);
+   }
+
+   showMessage("গ্রাহকের ডেমো ব্যালেন্স আপডেট হয়েছে।");
+   renderAdmin();
+  };
+
+  box.append(title,balance,input,btn);
+  list.appendChild(box);
+ });
+}
+
+/* ADMIN DEPOSIT APPROVAL */
+function renderAdminDeposits(users){
+ const list=document.getElementById("adminDeposits");
+ list.replaceChildren();
+
+ let found=false;
+
+ users.forEach(acc=>{
+  (acc.depositHistory||[]).forEach(tx=>{
+   found=true;
+
+   const box=document.createElement("div");
+   box.className="admin-card";
+
+   const title=document.createElement("b");
+   title.textContent=acc.name+" · "+acc.phone;
+
+   const detail=document.createElement("div");
+   detail.className="small";
+   detail.textContent=
+    "পরিমাণ: "+money(tx.amount)+
+    " · পদ্ধতি: "+tx.method+
+    " · প্রেরক: "+tx.sender+
+    " · TrxID: "+tx.trxId+
+    " · "+tx.date;
+
+   const note=document.createElement("p");
+   note.className="small";
+   note.textContent="অতিরিক্ত তথ্য: "+(tx.note||"নেই");
+
+   const status=document.createElement("span");
+   status.className="tag";
+   status.textContent=tx.status;
+
+   box.append(title,detail,note,status);
+
+   if(tx.status==="অপেক্ষমাণ"){
+    const approve=document.createElement("button");
+    approve.className="btn btn-approve";
+    approve.textContent="পেমেন্ট যাচাই করে অনুমোদন";
+
+    approve.onclick=()=>{
+     const ok=confirm(
+      "আপনি কি পেমেন্টটি বাইরের পেমেন্ট রেকর্ডে যাচাই করেছেন? যাচাই ছাড়া অনুমোদন করবেন না।"
+     );
+     if(!ok)return;
+
+     const latest=accountsRead();
+     const target=latest[acc.phone];
+     const payment=(target.depositHistory||[]).find(x=>x.id===tx.id);
+
+     if(!payment||payment.status!=="অপেক্ষমাণ"){
+      showMessage("এই অনুরোধ আর অপেক্ষমাণ নেই।",false);return;
+     }
+
+     /*
+      * Manual admin approval is only a local demo action.
+      * Verify the actual payment with the payment provider first.
+      */
+     payment.status="অ্যাডমিন অনুমোদিত (ডেমো)";
+     target.depositPaid=true;
+     target.transactions=target.transactions||[];
+     target.transactions.unshift({
+      type:"জামানত অনুমোদন",
+      amount:payment.amount,
+      date:new Date().toLocaleString("bn-BD"),
+      status:"অ্যাডমিন অনুমোদিত (ডেমো)"
+     });
+
+     if(!saveData("myFinanceAccounts",latest)){
+      showMessage("পরিবর্তন সংরক্ষণ করা যায়নি।",false);return;
+     }
+
+     showMessage("ডেমো অনুরোধ অনুমোদন করা হয়েছে। বাস্তব পেমেন্ট স্বাধীনভাবে যাচাই করুন।");
+     renderAdmin();
+    };
+
+    const reject=document.createElement("button");
+    reject.className="btn btn-danger";
+    reject.textContent="অনুরোধ বাতিল";
+
+    reject.onclick=()=>{
+     const latest=accountsRead();
+     const target=latest[acc.phone];
+     const payment=(target.depositHistory||[]).find(x=>x.id===tx.id);
+
+     if(!payment||payment.status!=="অপেক্ষমাণ")return;
+
+     payment.status="বাতিল";
+     target.depositPaid=false;
+
+     if(!saveData("myFinanceAccounts",latest)){
+      showMessage("পরিবর্তন সংরক্ষণ করা যায়নি।",false);return;
+     }
+
+     showMessage("জামানতের অনুরোধ বাতিল হয়েছে।");
+     renderAdmin();
+    };
+
+    box.append(approve,reject);
+   }
+
+   list.appendChild(box);
+  });
+ });
+
+ if(!found)list.textContent="এখনো কোনো জামানতের অনুরোধ নেই।";
+}
+
+/* ADMIN LOAN APPROVAL */
+function renderAdminLoans(users){
+ const list=document.getElementById("adminLoans");
+ list.replaceChildren();
+
+ let found=false;
+
+ users.forEach(acc=>{
+  (acc.loans||[]).forEach(loan=>{
+   found=true;
+
+   const box=document.createElement("div");
+   box.className="admin-card";
+
+   const title=document.createElement("b");
+   title.textContent=acc.name+" · "+acc.phone;
+
+   const detail=document.createElement("div");
+   detail.className="small";
+   detail.textContent=
+    "লোন: "+money(loan.amount)+
+    " · মেয়াদ: "+loan.months+" মাস"+
+    " · মোট সুদ: "+money(loan.interest)+
+    " · মোট পরিশোধ: "+money(loan.total);
+
+   const status=document.createElement("span");
+   status.className="tag";
+   status.textContent=loan.status;
+
+   box.append(title,detail,status);
+
+   if(loan.status==="আবেদন জমা হয়েছে"){
+    const approve=document.createElement("button");
+    approve.className="btn";
+    approve.textContent="আবেদন অনুমোদন";
+
+    approve.onclick=()=>{
+     const latest=accountsRead();
+     const target=latest[acc.phone];
+     const item=(target.loans||[]).find(x=>x.id===loan.id);
+
+     if(!item||item.status!=="আবেদন জমা হয়েছে")return;
+
+     item.status="অ্যাডমিন অনুমোদিত (ডেমো)";
+
+     if(!saveData("myFinanceAccounts",latest)){
+      showMessage("পরিবর্তন সংরক্ষণ করা যায়নি।",false);return;
+     }
+
+     showMessage("লোন আবেদনের ডেমো স্ট্যাটাস আপডেট হয়েছে।");
+     renderAdmin();
+    };
+
+    const reject=document.createElement("button");
+    reject.className="btn btn-danger";
+    reject.textContent="আবেদন বাতিল";
+
+    reject.onclick=()=>{
+     const latest=accountsRead();
+     const target=latest[acc.phone];
+     const item=(target.loans||[]).find(x=>x.id===loan.id);
+     if(!item)return;
+
+     item.status="বাতিল";
+
+     if(!saveData("myFinanceAccounts",latest))return;
+     showMessage("লোন আবেদন বাতিল হয়েছে।");
+     renderAdmin();
+    };
+
+    box.append(approve,reject);
+   }
+
+   list.appendChild(box);
+  });
+ });
+
+ if(!found)list.textContent="এখনো কোনো লোন আবেদন নেই।";
+}
+
+/* START */
+calculateLoan();
 showPage("loginPage");
 </script>
 
